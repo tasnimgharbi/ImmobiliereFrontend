@@ -1,0 +1,61 @@
+
+<div class="nav" *ngIf="!isAdmin">
+    <a href="/" class="nav__brand">Hometopia</a>
+
+    <div class="nav__collapsable">
+        
+    
+        <a href="#blogSection">Blog</a>
+        <a href="/filter">Estates</a>
+
+        <div class="nav__cta">
+            <ng-container *ngIf="isLoggedIn(); else loggedOutButtons">
+                <button mat-icon-button [matMenuTriggerFor]="userMenu" class="bu">
+                    <span class="span">Welcome, {{ getUsername() }}</span>
+                    <mat-icon style="padding-top: 7px;">keyboard_arrow_down</mat-icon>
+                </button>
+            </ng-container>
+
+            <mat-menu #userMenu="matMenu">
+                <button mat-menu-item [routerLink]="['/profile']">
+                    <mat-icon>account_circle</mat-icon>
+                    Your Profile
+                </button>
+                <button mat-menu-item (click)="logout()">
+                    <mat-icon>exit_to_app</mat-icon>
+                    Logout
+                </button>
+            </mat-menu>
+
+            <ng-template #loggedOutButtons>
+                <a href="#" [routerLink]="['/login',{disp:'signin'}]">Log In</a>
+                <a href="#" [routerLink]="['/login',{disp:'signup'}]">Sign Up</a>
+            </ng-template>
+        </div>
+    </div>
+</div>
+
+<div class="nav" *ngIf="isAdmin">
+    
+    <a href="/" class="nav__brand">Hometopia</a>
+
+    <div class="nav__collapsable">
+        <a href="/dashboard">Users</a>
+        <a href="/adminhouses">Houses</a>
+
+        <div class="nav__cta">
+            <ng-container *ngIf="isLoggedIn(); else loggedOutButtons">
+                <div class="nav__user-info">
+                    <span class="span">Welcome, {{ getUsername() }}</span>
+                    <mat-icon (click)="logout()" class="log">exit_to_app</mat-icon>
+                  </div>
+            </ng-container>
+
+
+            <ng-template #loggedOutButtons>
+                <a href="#" [routerLink]="['/login',{disp:'signin'}]">Log In</a>
+                <a href="#" [routerLink]="['/login',{disp:'signup'}]">Sign Up</a>
+            </ng-template>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="blog-section">
+    <div class="title-container">
+      <h2 class="title-text">Latest News and Tips</h2>
+    </div>
+    <div class="blog-posts">
+      <div *ngFor="let post of latestPosts; let i = index" class="blog-post" [class.alternate]="i % 2 !== 0" [@fadeInOut]>
+        <div class="blog-post-content">
+          <h3><a href="#" (click)="goToPostDetails(post)">{{ post.title }}</a></h3>
+          <p>{{ post.content }}</p>
+          <small>{{ post.date | date: 'medium' }}</small>
+        </div>
+        <div class="blog-post-image" [style.backgroundImage]="'url(' + post.imageUrl + ')'"></div>
+      </div>
+    </div>
+  </div>
+  

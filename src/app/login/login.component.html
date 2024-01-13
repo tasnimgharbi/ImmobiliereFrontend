@@ -1,0 +1,77 @@
+<body class="sbody">
+    <div class="tab-content mt-2">
+        <div class="signup">
+            <form #registerForm="ngForm" (ngSubmit)="signup()">
+                <h2 class="h2header">Sign Up</h2>
+                <input type="text" [class.is-invalid]="username.invalid && username.touched" #username="ngModel"
+                     [(ngModel)]="registeredUserData.username" name="username" placeholder="Username" spellcheck="false"
+                    required autocomplete="off">
+                
+                <input type="email" placeholder="E-mail" #email="ngModel" [(ngModel)]="registeredUserData.email"
+                    name="email" spellcheck="false" autocomplete="off" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                <p class="text-center"><small class="text-danger"
+                        *ngIf="email.invalid && email.touched">Invalid email</small></p>
+
+                        <input type="password" 
+                        placeholder="Password" 
+                        #password="ngModel"
+                        [(ngModel)]="registeredUserData.password" 
+                        name="password" 
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                        required>
+                 
+                 <p class="text-center">
+                     <small class="text-danger" *ngIf="password.invalid && password.touched">
+                         Must contain at least one number,
+                         <br> one uppercase and lowercase letter, 
+                         <br>and at least 8 characters
+                     </small>
+                 </p>
+                 <input type="tel" 
+                 placeholder="Contact Number" 
+                 pattern="^\d{8}" 
+                 #contactnumber="ngModel"
+                 [(ngModel)]="registeredUserData.contactnumber" 
+                 name="contactnumber" 
+                 required 
+                 autocomplete="off">
+          
+          <p class="text-center">
+              <small class="text-danger" *ngIf="contactnumber.invalid && contactnumber.touched">
+                  Phone number must have 8 digits
+              </small>
+          </p>
+                <input type="text" placeholder="Address" #address="ngModel" [(ngModel)]="registeredUserData.address"
+                    name="address" spellcheck="false" required>
+
+                    <div *ngIf="emailErrorMessage">
+                        <p class="text-danger">{{ emailErrorMessage }}</p>
+                      </div>
+                      <div *ngIf="usernameErrorMessage">
+                        <p class="text-danger">{{ usernameErrorMessage }}</p>
+                      </div>
+                
+                <input type="submit" [disabled]="registerForm.invalid" class="btn btn-primary" value="Register">
+
+
+            </form>
+            <p class="link">Already have an account? <a (click)="showSignupOrSignin('signin')">Sign in</a></p>
+        </div>
+        <div class="signin">
+            <form (ngSubmit)="signin()">
+                <h2 class="h2header">Sign In</h2>
+                <input type="email" placeholder="E-mail" [(ngModel)]="loginUserData.email" name="email"
+                    autocomplete="off" spellcheck="false" required>
+                <input type="password" placeholder="Password" [(ngModel)]="loginUserData.password" name="password"
+                    autocomplete="off" required>
+                <div *ngIf="loginerr">
+                    <p class="text-danger text-center">{{ loginerr }}</p>
+                </div>
+                <button type="submit">Login</button>
+
+            </form>
+            <p class="link">Create an account? <a (click)="showSignupOrSignin('signup')">Sign Up</a></p>
+        </div>
+    </div>
+
+</body>

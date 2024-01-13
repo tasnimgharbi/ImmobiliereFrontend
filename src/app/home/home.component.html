@@ -1,0 +1,37 @@
+<div class="hero mt-4 mb-4">
+  <img src="assets/image/6.jpg" alt="Hero Image" class="img-fluid" />
+  <div class="hero-content text-center text-white">
+    <h1 class="display-4">Welcome to Our Real Estate Website</h1>
+    <p class="lead">Find your dream home with us</p>
+    <app-search-bar></app-search-bar>
+  </div>
+</div>
+
+<div class="container">
+  <div class="featured-listings">
+    <h2 class="text-center mb-4">Featured Listings</h2>
+    <div class="row">
+      <div *ngFor="let house of featuredHouses" class="col-md-3 mb-4">
+        <span [routerLink]="['/house', house._id]" class="card-link">
+          <div class="card h-100">
+            <img
+              [src]="house.images[0]"
+              class="card-img-top"
+              alt="House Image"
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{ house.title }}</h5>
+              <p class="card-text">{{ house.price }}DT</p>
+              <p class="card-text">{{ house.location }}</p>
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+    <div class="text-center mt-3">
+      <a href="/filter" class="btn btn-secondary">View More</a>
+    </div>
+  </div>
+
+  <app-blog id="blogSection"></app-blog>
+</div>

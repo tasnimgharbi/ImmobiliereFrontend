@@ -1,0 +1,123 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.nav {
+  background-color: #080b06;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.nav__collapser {
+  display: none; 
+  cursor: pointer;
+}
+
+.nav__brand {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-left: 5px;
+}
+
+.nav__collapsable {
+  display: flex;
+  align-items: center;
+  margin-left: 10px; 
+}
+
+.nav__collapsable a {
+  text-decoration: none;
+  color: white;
+  margin: 0 15px;
+  transition: color 0.3s ease;
+}
+
+.nav__collapsable a:hover {
+  color: lightgray;
+}
+
+.nav__cta {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.cta {
+  text-decoration: none;
+  color: white;
+  padding: 8px 15px;
+  border: 2px solid white;
+  border-radius: 5px;
+  margin-right: 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cta:hover {
+  background-color: white;
+  color: #333;
+}
+
+.cta--bold {
+  font-weight: bold;
+}
+
+
+.bu {
+
+  color: white;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-left: 5px; 
+  width: auto;
+  padding-bottom: 48px;
+}
+
+.bu:hover {
+  background-color: white;
+  color: #333;
+}
+
+.span {
+  white-space: nowrap; 
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font: 16px Roboto, "Helvetica Neue", sans-serif; 
+}
+
+.nav__user-info {
+  display: flex;
+  align-items: center;
+}
+
+.nav__user-info .span {
+  white-space: nowrap;
+  max-width: 250px; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font: 16px Roboto, "Helvetica Neue", sans-serif;
+  color: white;
+}
+
+.nav__user-info .log {
+  margin-left: 10px;
+  cursor: pointer;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.nav__user-info .log:hover {
+  color: lightgray;
+}

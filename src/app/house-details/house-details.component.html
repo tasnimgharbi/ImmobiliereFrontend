@@ -1,0 +1,139 @@
+
+<div class="house-details" *ngIf="house">
+  <div class="title-container">
+    <h2>{{ house.title }} Details</h2>
+    <div class="contact-number">
+      <label>Contact Number:</label>
+      <span>{{ postedByUser.contactnumber }}</span>
+    </div>
+  </div>
+  <div class="details">
+  <div class="details-grid">
+    <div class="detail">
+      <label>Description:</label>
+      <span>{{ house.description }}</span>
+    </div>
+    <div class="detail">
+      <label>Price:</label>
+      <span>{{ house.price }}DT</span>
+    </div>
+    <div class="detail">
+      <label>Location:</label>
+      <span>{{ house.location }}</span>
+    </div>
+    <div class="detail">
+      <label>Bedrooms:</label>
+      <span>{{ house.bedrooms }}</span>
+    </div>
+    <div class="detail">
+      <label>Bathrooms:</label>
+      <span>{{ house.bathrooms }}</span>
+    </div>
+    <div class="detail">
+      <label>Size:</label>
+      <span>{{ house.size }} m²</span>
+    </div>
+    <div class="detail">
+      <label>Category:</label>
+      <span>{{ house.category }}</span>
+    </div>
+    <div class="detail">
+      <label>Type:</label>
+      <span>{{ house.type }}</span>
+    </div>
+    
+    
+    
+  </div>
+  <div class="detail" style="margin-top: 15px;">
+    <label>Amenities:</label>
+    <span style="margin-left: 10px;">{{house.amenities}}</span>
+  </div>
+    <div class="options">
+    <button (click)="cancelUpdate()">Cancel</button>
+    <button *ngIf="isOwner()" (click)="openUpdateModal()">Update House Details</button>
+    
+    <button *ngIf="isAdmin || isOwner()" (click)="deleteHouse(house._id)">Delete House</button>
+  </div>
+  </div>
+  <div class="carousel">
+    <div class="slides" [ngStyle]="{'transform': 'translateX(-' + currentSlide * 100 + '%)'}">
+      <div *ngFor="let image of house.images; let i = index" class="slide">
+        <img [src]="image" alt="Slide {{ i }}">
+      </div>
+
+    </div>
+    <button class="arrow left" (click)="prevSlide()">&#9665;</button>
+    <button class="arrow right" (click)="nextSlide()">&#9655;</button>
+    <div class="upload-images" *ngIf="isOwner()">
+      <label for="imageUpload">Upload Images:</label>
+      <input type="file" id="imageUpload" name="imageUpload" accept="image/*" multiple (change)="onFileChanged($event)">
+      <button (click)="uploadImages()">Upload</button>
+    </div>
+  </div>
+  
+    <div class="modal-overlay" *ngIf="showUpdateModal">
+      <div class="modal">
+        <h2>Update House Details</h2>
+        <form (ngSubmit)="onSubmitUpdateForm()" #updateForm="ngForm">
+          
+<div class="form-group">
+  <label for="updateTitle">Title:</label>
+  <input type="text" id="updateTitle" name="updateTitle" [(ngModel)]="updatedHouse.title" required>
+</div>
+
+<div class="form-group">
+  <label for="updateDescription">Description:</label>
+  <textarea id="updateDescription" name="updateDescription" [(ngModel)]="updatedHouse.description" required></textarea>
+</div>
+
+<div class="form-group form-group-inline">
+  <label for="updatePrice" style="margin-top: 12px;">Price:</label>
+  <input type="number" id="updatePrice" name="updatePrice" [(ngModel)]="updatedHouse.price" required>
+  
+  <label for="updateLocation" style="margin-top: 12px;">Location:</label>
+  <input type="text" id="updateLocation" name="updateLocation" [(ngModel)]="updatedHouse.location" required>
+</div>
+
+<div class="form-group form-group-inline">
+  <label for="updateBedrooms" style="margin-top: 12px;">Bedrooms:</label>
+  <input type="number" id="updateBedrooms" name="updateBedrooms" [(ngModel)]="updatedHouse.bedrooms" required>
+  
+  <label for="updateBathrooms" style="margin-top: 12px;">Bathrooms:</label>
+  <input type="number" id="updateBathrooms" name="updateBathrooms" [(ngModel)]="updatedHouse.bathrooms" required>
+</div>
+
+<div class="form-group form-group-inline">
+  <label for="updateSize" style="width: 170px;" style="margin-top: 12px;">Size:</label>
+  <input type="number" id="updateSize" name="updateSize" [(ngModel)]="updatedHouse.size" required>
+</div>
+
+<div class="form-group form-group-inline">
+  <label for="updateType" style="margin-top: 12px;">Type:</label>
+  <select id="updateType" name="updateType" [(ngModel)]="updatedHouse.type" required>
+    <option value="buy">Buy</option>
+    <option value="rent">Rent</option>
+  </select>
+  
+  <label for="updateCategory" style="margin-top: 12px;">Category:</label>
+  <select id="updateCategory" name="updateCategory" [(ngModel)]="updatedHouse.category" required>
+    <option value="house">House</option>
+    <option value="apartment">Apartment</option>
+  </select>
+  
+</div>
+<div class="form-group">
+  <label for="updateAmenities">Amenities</label>
+  <input type="text" id="updateAmenities" name="updateAmenities" [(ngModel)]="updatedHouse.amenities" required>
+</div>
+     
+
+          <div class="form-actions">
+            <button type="button" (click)="closeUpdateModal()">Close</button>
+            <button type="submit" [disabled]="updateForm.invalid">Update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  
+</div>

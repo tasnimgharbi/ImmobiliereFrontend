@@ -1,0 +1,58 @@
+<div class="container mt-4">
+ 
+  <div class="filters-container">
+    
+    <mat-form-field class="filter-select">
+      <mat-label>Category</mat-label>
+      <mat-select
+        [(value)]="selectedCategory"
+        (selectionChange)="filterHouses()"
+      >
+        <mat-option value="">All</mat-option>
+        <mat-option *ngFor="let category of categories" [value]="category">{{ category }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="filter-select">
+      <mat-label>Type</mat-label>
+      <mat-select [(value)]="selectedType" (selectionChange)="filterHouses()">
+        <mat-option *ngFor="let type of types" [value]="type">{{ type }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field  class="filter-input" >
+      <input matInput placeholder="Search Location" [(ngModel)]="searchLocation"  />   
+    </mat-form-field>
+    <button mat-button (click)="submitSearch()" class="sub">Submit</button>
+
+  </div>
+
+  <!-- Houses Section -->
+
+  <div class="grid-container">
+    <ng-container *ngFor="let house of filteredHouses; else noHouses">
+      <div class="grid-item" (click)="handleCardClick(house)">
+        <mat-card class="house-card">
+          <img class="card-img-top" [src]="house.images[0]" alt="House Image" />
+          <mat-card-content>
+            <h3 class="card-title">{{ house.title }}</h3>
+            <p class="card-text">Price: {{ house.price }}DT</p>
+            <p class="card-text">Size: {{ house.size }} m²</p>
+            <p class="card-text">Location: {{ house.location }}</p>
+            <p class="card-text">Category: {{ house.category }}</p>
+            <p class="card-text">Type: {{ house.type }}</p>
+            <!-- Add more details or buttons as needed -->
+
+            <!-- Display delete icon for admins -->
+           
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </ng-container>
+
+    <!-- If there are no filtered houses, display a message -->
+    <ng-template #noHouses>
+      <p>No houses found based on the selected filters.</p>
+    </ng-template>
+  </div>
+</div>

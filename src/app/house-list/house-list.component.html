@@ -1,0 +1,29 @@
+<div class="container mt-4">
+  <div class="header">
+    <h2 style="margin-left: 10px;"> My posts</h2>
+    <button *ngIf="!isAdmin " class="add-house-button" [routerLink]="['/addhouse']">Add a Post</button>
+  </div>
+  <div class="grid-container">
+    <ng-container *ngFor="let house of houses">
+      <div class="grid-item">
+        <mat-card class="house-card" >
+          <img class="card-img-top" [src]="house.images[0]" alt="House Image"  (click)="handleCardClick(house)">
+          <mat-card-content>
+            <h3 class="card-title"  (click)="handleCardClick(house)">{{ house.title }}</h3>
+            <p class="card-text">Price: ${{ house.price }}</p>
+            <p class="card-text">Size: {{ house.description }}</p>
+            <p class="card-text">Location: {{ house.location }}</p>
+            <p class="card-text">Category: {{ house.category }}</p>
+            <p class="card-text">Type: {{ house.type }}</p>
+            <span *ngIf="isAdmin || house.postedBy === this.userId ">
+              <span *ngIf="isAdmin || house.postedBy === this.userId" class="delete-icon" (click)="deleteHouse(house._id)">
+                <mat-icon color="warn">delete</mat-icon>
+              
+              </span>
+            </span>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </ng-container>
+  </div>
+</div>

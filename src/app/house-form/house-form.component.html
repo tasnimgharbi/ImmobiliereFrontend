@@ -1,0 +1,102 @@
+<div class="container mt-4">
+  <h2>Add a New House</h2>
+
+  <form (ngSubmit)="onSubmit()" #houseForm="ngForm" class="needs-validation" novalidate>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" name="title" [(ngModel)]="house.title" #title="ngModel" required>
+        <div class="invalid-feedback" *ngIf="title.invalid && title.touched">
+          Please provide a title.
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" name="description" [(ngModel)]="house.description" required></textarea>
+        <div class="invalid-feedback" *ngIf="houseForm.controls['description'].invalid && houseForm.controls['description'].touched">
+          Please provide a description.
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="price">Price</label>
+        <input type="number" class="form-control" id="price" name="price" [(ngModel)]="house.price" #price="ngModel" required>
+        <div class="invalid-feedback" *ngIf="price.invalid && price.touched">
+          Please provide a price.
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="location">Location</label>
+        <input type="text" class="form-control" id="location" name="location" [(ngModel)]="house.location" #location="ngModel" required>
+        <div class="invalid-feedback" *ngIf="location.invalid && location.touched">
+          Please provide a location.
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="bedrooms">Bedrooms</label>
+        <input type="number" class="form-control" id="bedrooms" name="bedrooms" [(ngModel)]="house.bedrooms" #bedrooms="ngModel" required>
+        <div class="invalid-feedback" *ngIf="bedrooms.invalid && bedrooms.touched">
+          Please provide the number of bedrooms.
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="bathrooms">Bathrooms</label>
+        <input type="number" class="form-control" id="bathrooms" name="bathrooms" [(ngModel)]="house.bathrooms" #bathrooms="ngModel" required>
+        <div class="invalid-feedback" *ngIf="bathrooms.invalid && bathrooms.touched">
+          Please provide the number of bathrooms.
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="size">Size (m²)</label>
+        <input type="number" class="form-control" id="size" name="size" [(ngModel)]="house.size" #size="ngModel" required>
+        <div class="invalid-feedback" *ngIf="size.invalid && size.touched">
+          Please provide the size in m²
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="category">Category</label>
+        <select class="form-select" id="category" name="category" [(ngModel)]="house.category" #category="ngModel" required>
+          <option value="" disabled selected>Select category</option>
+          <option value="house">House</option>
+          <option value="apartment">Apartment</option>
+        </select>
+        <div class="invalid-feedback" *ngIf="category.invalid && category.touched">
+          Please select a category.
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="type">Type</label>
+        <select class="form-select" id="type" name="type" [(ngModel)]="house.type" #type="ngModel" required>
+          <option value="" disabled selected>Select type</option>
+          <option value="rent">Rent</option>
+          <option value="buy">Buy</option>
+        </select>
+        <div class="invalid-feedback" *ngIf="type.invalid && type.touched">
+          Please select a type.
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="amenities">Amenities</label>
+        <input type="text" class="form-control" id="amenities" name="amenities" [(ngModel)]="house.amenities">
+        <small class="form-text text-muted">Separate amenities with commas (e.g., Pool, Garden, Parking).</small>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="images">Images</label>
+        <input type="file" class="form-control" id="images" name="images" multiple (change)="onFileChanged($event)">
+        <small class="form-text text-muted">Select multiple images for the house.</small>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="!houseForm.valid">Submit</button>
+  </form>
+</div>
